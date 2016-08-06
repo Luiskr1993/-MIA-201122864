@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1466884359 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/cadena.c
+	"cadena.h"
+
+1466884213 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/cadena.h
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<time.h>
+
+1470418203 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.c
+	"disco.h"
+
+1470418022 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.h
+	<math.h>
+	"cadena.h"
+
+1470418703 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.c
+	"interprete.h"
+
+1470417074 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<errno.h>
+	<time.h>
+	"disco.h"
+	"cadena.h"
+	"lwh.h"
+	"reportes.h"
+
+1467005287 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/lwh.h
+	<time.h>
+	"disco.h"
+
+1467005459 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/reportes.h
+	"disco.h"
+	"lwh.h"
+
+1467042295 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/lwh.c
+	"lwh.h"
+
+1470416879 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<errno.h>
+	<time.h>
+	"interprete.h"
+
+1470417246 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/reportes.c
+	"reportes.h"
+
