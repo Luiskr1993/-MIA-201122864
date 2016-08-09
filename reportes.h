@@ -2,7 +2,7 @@
 #define REPORTES_H_INCLUDED
 
 #include "disco.h"
-#include "lwh.h"
+//#include "lwh.h"
 
 
 void do_mbrReport(const char* pathDisco, const char* pathsalida);
@@ -17,9 +17,6 @@ void do_fileReport(char *ruta, char *name, char *pathDisco, PARTITION p);
 void do_ebrReport(const char* pathDisco, const char*pathsalida);
 
 
-void InodeToGVCode(FILE* report, int correlativo,INODO inode,int id);
-void BlockCarpetaToGVCode(FILE* report, int correlativo, NODO_AVD block, int id);
-void BlockArchivoToGVCode(FILE* report, int correlativo, BLOQUE_DATOS block, int id);
-void BlockApuntadoresToGVCode(FILE* report, int correlativo, BLOQUE_APUNTADORES block, int id);
+
 
 #endif // REPORTES_H_INCLUDED

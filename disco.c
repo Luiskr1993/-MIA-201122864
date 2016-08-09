@@ -251,6 +251,64 @@ void AgregarParticion(const char* path,PARTITION p){
                 case 'E':
                     printf("Creando Particion Extendida...\n");
 
+                    if(numExtendidas>0){printf("No se puede crear la particion extendida. Ya existe una.\n");return;}
+                    if(numPrimarias+numExtendidas<4){
+                        //inesertarParticion primaria
+                        int byteDeAjuste=BuscarAjusteParticion(mbr,p.part_size);
+                        printf("ajuste en:%d\n",byteDeAjuste);
+                        if(byteDeAjuste<0){
+                            printf("No se puede crear particion Extendida. No se encontro ajuste. \n");
+                            return;
+                        }else{
+                            p.part_start=byteDeAjuste;
+
+                            ///adjutando en el arreglo
+                            int i;
+                            for(i=0;i<4;i++){
+                               if(mbr.mbr_partition[i].part_status==LIBRE){
+                                    mbr.mbr_partition[i]=p;
+
+                                    break;
+                               }
+                            }
+                            ///reordenando el arreglo
+                            PARTITION temp;
+                            int j;
+                            for(j=numPrimarias+numExtendidas-1;j<=0;j--){
+                                for(i=0;i<j;i++){
+                                    if(mbr.mbr_partition[i].part_start>mbr.mbr_partition[i+1].part_start){
+                                        temp=mbr.mbr_partition[i+1];
+                                        mbr.mbr_partition[i+1]=mbr.mbr_partition[i];
+                                        mbr.mbr_partition[i]=temp;
+                                    }
+                                }
+                            }
+
+                            ///Creando el EBR inicial para la particion extendida
+                            printf("Agregando EBR...\n");
+                            EBR ebr;
+                            ebr.part_start = p.part_start;
+                            ebr.part_next = 00000;
+                            ebr.part_size = p.part_size;
+                            ebr.part_status = p.part_status;
+                            ebr.part_fit = p.part_fit;
+                            //ebr.part_name = p.part_name;
+
+
+                            WriteEBR(path, ebr);
+
+                            /////////////////////////////////////////////////
+        printf("EBR agregado correctamente en la Particion Extendida: &c \n");
+
+                            printf("Actualizando MBR...\n");
+                            WriteMBR(path,mbr);
+                            printf("Creacion concluida.\n");
+                        }
+                    }else{
+                        printf("No es posiblie Crear la particion Extendida. La cantidad de particiones primarias y extendidas en un disco no debe ser mayor a 4.\n");
+                    }
+                break;
+
             }
 
 

@@ -10,7 +10,7 @@
 #include <time.h>
 #include "disco.h"
 #include "cadena.h"
-#include "lwh.h"
+//#include "lwh.h"
 #include "reportes.h"
 
 ///definiciones

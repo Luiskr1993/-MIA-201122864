@@ -241,9 +241,9 @@ int ReadConsole(char* mensajeSalida, char* Destino,size_t sz){
 void Limpiar(){
     system("clear");
     printf(".---------------------------------------------------------------------------.\n");
-    printf("|                      Manejo e implementacion de Archivos.                 |\n");
-    printf("|                      Vacaciones de Junio 2016.                        |\n");
-    printf("|                      Luis Carlos Valiente Salazar                  |\n");
+    printf("|                      Manejo e implementacion de Archivos.                  |\n");
+    printf("|                           Segundo Semestre 2016.                           |\n");
+    printf("|                        Luis Carlos Valiente Salazar                        |\n");
     printf(".---------------------------------------------------------------------------.\n");
 };
 void interpretarComando(){

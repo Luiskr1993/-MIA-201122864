@@ -7,25 +7,25 @@
 	<File name="cadena.h" open="0" top="0" tabpos="0">
 		<Cursor position="485" topLine="0" />
 	</File>
-	<File name="disco.c" open="1" top="0" tabpos="5">
-		<Cursor position="9024" topLine="7" />
+	<File name="disco.c" open="1" top="1" tabpos="4">
+		<Cursor position="11290" topLine="333" />
 	</File>
-	<File name="disco.h" open="1" top="0" tabpos="6">
+	<File name="disco.h" open="0" top="0" tabpos="6">
 		<Cursor position="1624" topLine="36" />
 	</File>
-	<File name="interprete.c" open="1" top="1" tabpos="3">
-		<Cursor position="5429" topLine="30" />
+	<File name="interprete.c" open="1" top="0" tabpos="1">
+		<Cursor position="7841" topLine="237" />
 	</File>
-	<File name="interprete.h" open="1" top="0" tabpos="2">
-		<Cursor position="1447" topLine="69" />
+	<File name="interprete.h" open="0" top="0" tabpos="2">
+		<Cursor position="223" topLine="0" />
 	</File>
-	<File name="main.c" open="1" top="0" tabpos="1">
+	<File name="main.c" open="0" top="0" tabpos="1">
 		<Cursor position="521" topLine="0" />
 	</File>
-	<File name="reportes.c" open="1" top="0" tabpos="4">
+	<File name="reportes.c" open="1" top="0" tabpos="3">
 		<Cursor position="8276" topLine="0" />
 	</File>
-	<File name="reportes.h" open="0" top="0" tabpos="6">
-		<Cursor position="853" topLine="3" />
+	<File name="reportes.h" open="1" top="0" tabpos="2">
+		<Cursor position="856" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
