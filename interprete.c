@@ -16,9 +16,13 @@ void do_mkdisk(){
         }
      }
 
+
+
      if(!error){
         ///hacer...
-        CrearDisco(PARAM_path,PARAM_size,unidad);
+
+        CrearDisco(PARAM_path, PARAM_size,unidad);
+
      }
 };
 
@@ -43,7 +47,7 @@ void do_fdisk(char action){
         else if(PARAM_unit=='m'||PARAM_unit=='M')unidad=MB;
         else if(PARAM_unit=='b'||PARAM_unit=='B')unidad=1;
         else{
-            printf("ERROR. El parametro opcional -unit solo adminte |'b'|'B'|'k'|'K'|'m'|'M'.\n");error=1;
+            printf("ERROR. El parametro opcional +unit solo adminte |'b'|'B'|'k'|'K'|'m'|'M'.\n");error=1;
         }
     }
     ///para el parametro size
@@ -58,26 +62,26 @@ void do_fdisk(char action){
         else if(strcasecmp(PARAM_type,"E")==0)tipoParticion='E'; //Particion Extendida
         else if(strcasecmp(PARAM_type,"L")==0)tipoParticion='L'; //Particion Logica
         else{
-            printf("ERROR. El parametro opcional -type solo adminte 'P'|'E'|'L'.\n");error=1;
+            printf("ERROR. El parametro opcional +type solo adminte 'P'|'E'|'L'.\n");error=1;
         }
     }
     ///fit
     if(strcmp(PARAM_fit,"")!=0){
-        if(strcasecmp(PARAM_fit,"B")==0)tipoAjuste='B'; //Best Fit
-        else if(strcasecmp(PARAM_fit,"F")==0)tipoAjuste='F'; //First Fit
-        else if(strcasecmp(PARAM_fit,"F")==0)tipoAjuste='W'; //Worst Fit
+        if(strcasecmp(PARAM_fit,"BF")==0)tipoAjuste='B'; //Best Fit
+        else if(strcasecmp(PARAM_fit,"FF")==0)tipoAjuste='F'; //First Fit
+        else if(strcasecmp(PARAM_fit,"WF")==0)tipoAjuste='W'; //Worst Fit
         else{
-            printf("ERROR. El parametro opcional -fit solo adminte 'B'|'F'|'W'.\n");error=1;
+            printf("ERROR. El parametro opcional +fit solo adminte 'BF'|'FF'|'WF'.\n");error=1;
         }
     }
     ///name
-    if(strcmp(PARAM_name,"")==0){printf("ERROR. Falta el parmetro -name.\n");error=1;}
+    if(strcmp(PARAM_name,"")==0){printf("ERROR. Falta el parmetro +name.\n");error=1;}
     ///delete
     if(strcmp(PARAM_delete,"")!=0){
-        if(strcasecmp(PARAM_delete,"fast")==0)tipoDel=RAPIDO;
-        else if(strcasecmp(PARAM_delete,"full")==0)tipoDel=COMPLETO;
+        if(strcasecmp(PARAM_delete,"Fast")==0)tipoDel=RAPIDO;
+        else if(strcasecmp(PARAM_delete,"Full")==0)tipoDel=COMPLETO;
         else{
-            printf("ERROR. El parametro opcional -delete solo adminte 'fast'|'full'.\n");error=1;
+            printf("ERROR. El parametro opcional +delete solo adminte 'Fast'|'Full'.\n");error=1;
         }
     }
 
@@ -114,10 +118,13 @@ void do_mount(){
     ///path
     if(strcmp(PARAM_path,"")==0){printf("ERROR. Falta el parmetro -path.\n");error=1;}
     ///name
-    if(strcmp(PARAM_name,"")==0){printf("ERROR. Falta el parmetro -name.\n");error=1;}
+    if(strcmp(PARAM_name,"")==0){printf("ERROR. Falta el parmetro +name.\n");error=1;}
     if(!error){
         ///montar
         MontarParticion(PARAM_path,PARAM_name);
+    }
+    else{
+     ImprimirMontados();
     }
 };
 
@@ -149,9 +156,9 @@ void do_rep(){
         int partindex=BuscarEnMontados(PARAM_id);
         if(partindex==-1){printf("La particion no esta montada en el sistem .S.\n");return;}
         PARTITION_MOUNTED part=Montados[partindex];
-
+        printf("nombre: %s", PARAM_name);
         if(strcasecmp(PARAM_name,"mbr")==0)do_mbrReport(part.path,PARAM_path);
-        else if(strcasecmp(PARAM_name,"disk")==0)do_diskReport(part.path,PARAM_path);
+        else if((strcasecmp(PARAM_name,"disk")==0) || (strcasecmp(PARAM_name,"\"Disk\"")==0))do_diskReport(part.path,PARAM_path);
         else if(strcasecmp(PARAM_name, "journaling")==0)do_ebrReport(part.path, PARAM_path);
         else if(strcasecmp(PARAM_name,"inode")==0);
         else if(strcasecmp(PARAM_name,"block")==0);
@@ -163,7 +170,7 @@ void do_rep(){
         else if(strcasecmp(PARAM_name,"Ls +i")==0);
         else if(strcasecmp(PARAM_name,"Ls +l")==0);
            else{
-               printf("El parametro path solo acepta: 'mbr', 'ebr', 'disk', 'inode', 'block', 'bm_inode', 'mb_block', 'tree', 'sb' y 'file'.\n");
+               printf("El parametro path solo acepta: 'mbr', 'Mbr', 'ebr', 'disk', 'Disk', 'inode', 'block', 'bm_inode', 'mb_block', 'tree', 'sb' y 'file'.\n");
                error=1;
            }
 
@@ -186,7 +193,8 @@ void do_exec(){
         fscanf (script, "%[^\n] \n", bufferComando);
        do  {
             printf("%s\n",bufferComando);
-            if(bufferComando[0]!='#'){interpretarComando();}
+            //if(bufferComando[0]!='#'){interpretarComando();}
+            interpretarComando();
             fscanf (script, "%[^\n] \n", bufferComando);
             //fscanf (script, "%s", bufferComando);
             if(pausa=='1')ReadConsole("",result,9);
@@ -251,6 +259,11 @@ void interpretarComando(){
     char tipoOperacion='0';
     int Param=0;
     char*token;
+    char*tokenPath;
+    char*tokenName;
+
+
+
     token = strtok(bufferComando, " ");
 
 
@@ -258,8 +271,10 @@ void interpretarComando(){
 
         interpretarComentario();
 
-        return;
+        //return;
     }
+
+
 
     while( token != NULL &&Param<10)
     {
@@ -282,8 +297,8 @@ void interpretarComando(){
         //if(bufferParametros[Param][0]!='\0')
         //printf("%s\n",bufferParametros[Param]);
         strcpy(ActualParam,bufferParametros[Param]);
-        token = strtok(ActualParam, ":");
-        paramVal = strtok(NULL, ":");
+        token = strtok(ActualParam, "::");
+        paramVal = strtok(NULL, "::");
 
 
 
@@ -301,7 +316,8 @@ void interpretarComando(){
         }
         else if(strcasecmp(token,"-path")==0){
             if(paramVal!=NULL)
-            strcpy(PARAM_path,paramVal);
+            tokenPath = strtok(paramVal, "\"");
+            strcpy(PARAM_path,tokenPath);
         }
         else if(strcasecmp(token,"+type")==0){
             if(paramVal!=NULL)
@@ -320,7 +336,8 @@ void interpretarComando(){
         }
         else if(strcasecmp(token,"-name")==0){
             if(paramVal!=NULL)
-            strcpy(PARAM_name,paramVal);
+            tokenName = strtok(paramVal, "\"");
+            strcpy(PARAM_name,tokenName);
         }
         else if(strcasecmp(token,"+add")==0){
             if(paramVal!=NULL){
@@ -401,7 +418,7 @@ void interpretarComando(){
 void interpretarComentario(){
 
    // ResetParam();
-
+/*
     char*token;
     token = strtok(bufferComando, " ");
 
@@ -415,6 +432,8 @@ void interpretarComentario(){
     }
 
     printf(".\n");
+
+*/
 
 
 
@@ -430,7 +449,7 @@ void Console(){
     Limpiar();
     else if(strcasecmp(bufferComando, "#")==0){
         printf("Este es un comentario\n");
-        interpretarComentario();
+       // interpretarComentario(bufferComando);
     }
     else if(strlen(bufferComando)>0)
       interpretarComando();

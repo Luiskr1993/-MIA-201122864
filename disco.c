@@ -53,7 +53,18 @@ void CrearDisco(const char* path, int size,int unit){
     char c[1024];
     long escritos=0;
     //c[0]='\0';
-    char* parent=getParentPath(path);
+
+/*
+char rutaCompleta[30];
+
+     strcpy(rutaCompleta, path);
+
+     strcat(rutaCompleta, "/");
+
+     strcat(rutaCompleta, name);
+printf("rutaCompleta: %s\n", rutaCompleta);
+*/
+char* parent=getParentPath(path);
 
     system(CCAT("mkdir -m a=rwx -p ",parent));//para crear la carpeta que no exista en el path introducido por el usuario
     FILE* nuevoDisco=NULL;
@@ -234,6 +245,7 @@ void AgregarParticion(const char* path,PARTITION p){
                                         temp=mbr.mbr_partition[j];
                                         mbr.mbr_partition[j]=mbr.mbr_partition[j+1];
                                         mbr.mbr_partition[j+1]=temp;
+
                                     }
                                 }
                             }

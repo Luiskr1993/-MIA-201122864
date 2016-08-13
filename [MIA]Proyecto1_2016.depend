@@ -8,17 +8,17 @@
 	<stdio.h>
 	<time.h>
 
-1470781807 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.c
+1471065357 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.c
 	"disco.h"
 
-1470418022 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.h
+1471065357 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/disco.h
 	<math.h>
 	"cadena.h"
 
-1470781994 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.c
+1471065715 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.c
 	"interprete.h"
 
-1470781882 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.h
+1471060466 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/interprete.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -33,7 +33,7 @@
 	<time.h>
 	"disco.h"
 
-1470781974 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/reportes.h
+1471049061 /home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/reportes.h
 	"disco.h"
 
 1467042295 source:/home/luiskr/Luiskr/MIA2016/Practicas/[MIA]Proyecto1_2016/lwh.c
